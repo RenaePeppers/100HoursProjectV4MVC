@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+       <!-- Navbar -->
+       <div class="navbar">
+        <div class="container flex">
+            <h1 class="logo">5 Weeks, 3 Numbers</h1>
+            <nav>
+                <ul>
+                    <li><a>Home</a></li>
+                    <li><a href="/dataEntryTable">Daily Data Entry and Graph</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <section class="instructions-section">
+    
+        <div class="card">
+            <h2>Guidelines</h2>
+            <p>If you consistently consume fewer calories than you burn, your weight will decrease over time.</p>
+            <p>Average Daily Calorie Deficit = (calories burned per day)  - (calories consumed per day) </p>
+            <p>A 500 calorie/day average deficit results in a 1 lb/week weight loss.</p>
+            <p>A 1000 calorie/day average deficit results in a 2 lb/week weight loss.</p>
+        </div>
+    
+    </section>
+    <section class="instructions .card-grid">
+        <div class="setup-form card">
+            <h2>Initial Set-Up for Your 5 Week Plan</h2>
+            <p>Today is day 0.  What do you weigh today?</p>
+            <form>
+                <div class="form-control showcase-form">
+                    <input id="user-name" type="text" name="dbusername" placeholder="Enter Your Name" required>
+                </div>
+
+                <div class="form-control showcase-form">
+                    <input id="start-weight" type="text" name="starting-weight" placeholder="Enter Starting Weight" required>
+                </div>
+            <p>What is your average daily calorie deficit goal for the next 5 weeks? </p>    
+                <div class="form-control showcase-form">
+                        <input id="deficit-goal" type="text" name="daily-deficit-goal" placeholder="Enter Daily Calorie Deficit" required>
+                </div>
+                <button id="see-results" class="btn" type="button" name="button">Click to see results</button>
+            </form>
+        </div>    
+
+
+       <div class="card2">
+            <form action="/api" method="POST"> 
+            <h1>Your starting weight is <span id="startWeightOut">_______ </span> .</h1>
+            <h1>If you average <span id="calDefOut">_______</span> calorie/day deficit,</h1>
+            <h1> in 5 weeks you will weigh <span id="goal-weight-output">_______</span> pounds.</h1>
+            
+            <button class="row4 button-effect btn" type="button" 
+            id="updateDay0">Click to Commit to This Plan</button> <!--this works with the PUT and needs listener,etc to work-->  
+            <!-- <button id="yell2" class="btn" type="submit" name="button">Click to Commit to This Plan</button> -->
+            </form> 
+    
+        </div>
+    </section>
+ 
+
+
+    <section class="chart-and-table">
+        <section>
+        <div class="chart-container" style="position: relative">
+        <!-- /* ; height: 80vh; width: 40vw"> */ -->
+            <canvas id="goalChart"></canvas>
+        </div>
+
+<!-- 
+        var chartTodayWeight=[];
+        for (let i=0; i<info.length; i++){
+        chartTodayWeight.push(info[i].dbtodaysweight)
+        }  ;
+        console.log(chartTodayWeight); -->
+
+        <script>
+            const labelArray=[]
+            for (i=0; i<=35; i++){
+            labelArray[i]=i
+            }
+            const labels = labelArray;
+            const data = {
+                  labels: labels,
+                  datasets: [{
+                    label: 'Goal Line:  Weight Over Time',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                  },{
+                  label:'current weight',
+                  borderColor:"rgba(0,0,0,0)",
+                  data:[],
+                  pointRadius: 10,
+                  }]
+                };
+                  const config = {
+                  type: 'line',
+                  data: data,
+                  options: {
+                     plugins: {
+                      legend: {
+                        display: false,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                      }
+                     }
+                    }
+                  };
+             </script>
+            <script>
+                const goalChart = new Chart(
+                  document.getElementById('goalChart'),
+                  config
+                );
+            </script>
+        </div>
+        </section>
+        
+
+</section>  <!--end chart-and-table-->    
+
+
+
+
+<script type ="text/javascript" src="main.js" defer="defer"></script>    
+</body>
+
+</html>
