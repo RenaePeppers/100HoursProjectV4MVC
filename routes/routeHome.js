@@ -10,6 +10,8 @@ router.get('/', homeController.getIndex)  //this will render the homepagenow go 
 //router.post('/', homeController.createTask) //this will be for creating a new task on homepage. now go build the methods so our router has something to retrieve.
 //go into controllers/home.js and build out the methods that we can export and our router can call upon
 //these get sent to controllers/home.js
-
+router.post('/', homeController.createPlan) //this will be for creating a new plan on homepage. now go build the methods so our router has something to retrieve.
+//go into controllers/home.js and build out the methods that we can export and our router can call upon
+//these get sent to controllers/home.js
 
 module.exports = router

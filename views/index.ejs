@@ -18,7 +18,7 @@
             <nav>
                 <ul>
                     <li><a>Home</a></li>
-                    <li><a href="/dataEntryTable">Daily Data Entry and Graph</a></li>
+                    <li><a href="/daily">Daily Data Entry and Graph</a></li>
                 </ul>
             </nav>
         </div>
@@ -58,16 +58,14 @@
 
 
        <div class="card2">
-            <form action="/api" method="POST"> 
             <h1>Your starting weight is <span id="startWeightOut">_______ </span> .</h1>
             <h1>If you average <span id="calDefOut">_______</span> calorie/day deficit,</h1>
             <h1> in 5 weeks you will weigh <span id="goal-weight-output">_______</span> pounds.</h1>
             
-            <button class="row4 button-effect btn" type="button" 
-            id="updateDay0">Click to Commit to This Plan</button> <!--this works with the PUT and needs listener,etc to work-->  
-            <!-- <button id="yell2" class="btn" type="submit" name="button">Click to Commit to This Plan</button> -->
+            <form action="/" method="POST"> 
+                <input  id="user-name" type="text" name="dbusername2"  value = jimmy placeholder="Enter Your Name" required>
+                <button class="row4 button-effect btn" type="submit" id="updateDay0">Click to Commit to This Plan</button> 
             </form> 
-    
         </div>
     </section>
  

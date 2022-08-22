@@ -6,7 +6,7 @@ dbusername: {
 },
 dbstartweight: {
     type: String,
-    required: true
+    required: false
 },
 dbstartdate: {
     type: Date,
@@ -14,35 +14,47 @@ dbstartdate: {
 },
 dbgoaldeficit: {
     type: String,
-    required: true
+    required: false
 },
 dbgoalweight: {
     type: String,
-    required: true
+    required: false
 },
 dbtodaysdaynumber: {
-    type: String,
-    required: true
+    type: Number,
+    required: false
 },
-dbcurrentdate: {
+dbtodaysdate: {
     type: Date,
     default: Date.now
 },
-dbtodaysdaynumber: {
+dbyesterdaydeficit: {
     type: String,
-    required: true
+    required: false
 },
-dbtodaysdaynumber: {
+dbyesterdaycalin: {
     type: String,
-    required: true
+    required: false
 },
-dbtodaysdaynumber: {
+dbyesterdaycalout: {
     type: String,
-    required: true
+    required: false
 },
+dbtodaysweight: {
+    type: String,
+    required: false
+},
+dbrunningavgdeficit: {
+    type: String,
+    required: false
+},
+dbrunningpredictedweight: {
+    type: String,
+    required: false
+}
 })
 module.exports = mongoose.model('WeightDataModel',weightDataSchema,'weightData');  
 
-//we are exporting a model so that we can use it in other places.  We are giving it the name TodoTask/WeightDataModel. We are assigning the schema to the model.  the third parameter is the collection name.  We don't have to specify a collection.  It is optional.  If we didn't specify the collection name, it creates a new collection.  It would name it TodoTasks (plural of the model name)
+//we are exporting a model so that we can use it in other places.  We are giving it the name WeightDataModel. We are assigning the schema to the model.  the third parameter is the collection name.  We don't have to specify a collection.  It is optional.  If we didn't specify the collection name, it creates a new collection.  It would name it WeightDataModels (plural of the model name)
 
 //the schema is where you define with collection that you put these into.  the database is specified in the config file in the DB_CONNECTION

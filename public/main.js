@@ -15,7 +15,7 @@ function calcGoalWeight() {
     for(i=0; i<=35; i++){
        goalArray[i]=startWeight-i*dailyDefGoal/3500
     }
-    //let weekArray=goalArray
+    
     goalChart.data.datasets[0].data=goalArray
     goalChart.update();
 }

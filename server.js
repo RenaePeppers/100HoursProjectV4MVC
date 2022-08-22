@@ -7,6 +7,7 @@ const cors = require('cors')
 const connectDB = require("./config/database")
 //const MongoClient=require('mongodb').MongoClient
 const homeRoutes = require("./routes/routeHome")
+const dailyRoutes = require("./routes/routeDaily")
 require('dotenv').config({path:'./config/.env'})
 
 //CONNECT TO DATABASE************************************************************ *//
@@ -22,7 +23,7 @@ app.use(cors()); //MAY NOT BE NEEDED
 
 //SET ROUTES***************************************************************** *//
 app.use('/', homeRoutes)
-//app.use('/edit', editRoutes)
+app.use('/daily', dailyRoutes)
 
 
 //START SERVER***************************************************************** *//
