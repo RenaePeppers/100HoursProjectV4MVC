@@ -4,9 +4,10 @@
 const express = require('express')
 const router = express.Router() //require the router component of express
 const dailyController = require('../controllers/conDaily')
+const { ensureAuth } = require('../middleware/auth')
 
 //add specific routes for specific tasks
-router.get('/', dailyController.getDaily)  //this will render the daily page.  now go build the methods so our router has something to retrieve
+router.get('/', ensureAuth, dailyController.getDaily)  //this will render the daily page.  now go build the methods so our router has something to retrieve
 //router.post('/', homeController.createTask) //this will be for creating a new task on homepage. now go build the methods so our router has something to retrieve.
 //go into controllers/daily.js and build out the methods that we can export and our router can call upon
 //these get sent to controllers/daily.js

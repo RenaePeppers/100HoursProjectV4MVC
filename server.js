@@ -2,13 +2,22 @@
 const express = require('express')
 const app = express()  
 const mongoose = require("mongoose")
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const flash = require('express-flash')
+const logger = require('morgan')
 const expressLayouts = require('express-ejs-layouts')  //v3
 const cors = require('cors')
 const connectDB = require("./config/database")
 //const MongoClient=require('mongodb').MongoClient
-const homeRoutes = require("./routes/routeHome")
+const mainRoutes = require("./routes/routeMain")
+//const homeRoutes = require("./routes/routeHome")
 const dailyRoutes = require("./routes/routeDaily")
+const { config } = require('dotenv')
 require('dotenv').config({path:'./config/.env'})
+
+require('./config/passport')(passport)
 
 //CONNECT TO DATABASE************************************************************ *//
 connectDB()
@@ -20,14 +29,31 @@ app.use(expressLayouts)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())  //middleware helps express parse json objects  MAY NOT BE NEEDED
 app.use(cors()); //MAY NOT BE NEEDED
+app.use(logger('dev'))
+
+//SESSIONS***************************************************************** *//
+app.use(
+    session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({ mongoUrl: process.env.DB_STRING}),
+    })
+  )
+
+//PASSPORT MIDDLEWARE****************************************************** *//
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(flash())
 
 //SET ROUTES***************************************************************** *//
-app.use('/', homeRoutes)
+
+app.use('/', mainRoutes)
 app.use('/daily', dailyRoutes)
 
 
 //START SERVER***************************************************************** *//
-//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running on port `)
 })   
