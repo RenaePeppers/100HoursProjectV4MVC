@@ -1,6 +1,7 @@
 const passport = require('passport')
 const validator = require('validator')
 const User = require('../models/User')
+const WeightDataModel = require('../models/WeightDataModel')
 
  exports.getLogin = (req, res) => {
     if (req.user) {
@@ -11,6 +12,14 @@ const User = require('../models/User')
     })
   }
   
+  exports.getCommit = (req, res) => {
+       res.render('commit.ejs', {
+      title: 'Commit'
+    })
+  }
+
+
+
   exports.postLogin = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
@@ -75,7 +84,6 @@ const User = require('../models/User')
       email: req.body.email,
       password: req.body.password
     })
-  
     User.findOne({$or: [
       {email: req.body.email},
       {userName: req.body.userName}
@@ -91,7 +99,7 @@ const User = require('../models/User')
           if (err) {
             return next(err)
           }
-          res.redirect('/daily')
+          res.redirect('/commit')
         })
       })
     })

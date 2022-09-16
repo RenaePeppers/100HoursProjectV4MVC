@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
+
 const weightDataSchema = new mongoose.Schema({
-dbusername: {
+username: {
     type: String,
-    required: true
+    required: false
 },
+user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+
 dbstartweight: {
-    type: String,
+    type: Number,
     required: false
 },
 dbstartdate: {
@@ -13,11 +19,11 @@ dbstartdate: {
     default: Date.now
 },
 dbgoaldeficit: {
-    type: String,
+    type: Number,
     required: false
 },
 dbgoalweight: {
-    type: String,
+    type: Number,
     required: false
 },
 dbtodaysdaynumber: {
@@ -29,27 +35,27 @@ dbtodaysdate: {
     default: Date.now
 },
 dbyesterdaydeficit: {
-    type: String,
+    type: Number,
     required: false
 },
 dbyesterdaycalin: {
-    type: String,
+    type: Number,
     required: false
 },
 dbyesterdaycalout: {
-    type: String,
+    type: Number,
     required: false
 },
 dbtodaysweight: {
-    type: String,
+    type: Number,
     required: false
 },
 dbrunningavgdeficit: {
-    type: String,
+    type: Number,
     required: false
 },
 dbrunningpredictedweight: {
-    type: String,
+    type: Number,
     required: false
 }
 })

@@ -1,14 +1,15 @@
 //const  TodoTask = require('../models/todotask')  //require path .  we are going to models folder which exported TodoTask
-const WeightDataModel = require('../models/modHome')
+const WeightDataModel = require('../models/WeightDataModel')
 
 module.exports = {   
     getIndex : async (request, response) => {
         try {
-          response.render('index.ejs',{title:"Initial Set Up"})   //if html, would use sendFile instead of render? title if for layout.ejs
+          response.render('index.ejs',{title:"Initial Set Up"})   //if html, would use sendFile instead of render? title is for layout.ejs
         } catch (error) {
             response.status(500).send({message:error.message})
         }
     },
+    
     
     createPlan:  async (req, res) => {   
         try {

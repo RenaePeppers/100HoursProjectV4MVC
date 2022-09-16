@@ -14,6 +14,7 @@ const connectDB = require("./config/database")
 const mainRoutes = require("./routes/routeMain")
 //const homeRoutes = require("./routes/routeHome")
 const dailyRoutes = require("./routes/routeDaily")
+const commitRoutes = require("./routes/routeCommit")
 const { config } = require('dotenv')
 require('dotenv').config({path:'./config/.env'})
 
@@ -51,7 +52,7 @@ app.use(flash())
 
 app.use('/', mainRoutes)
 app.use('/daily', dailyRoutes)
-
+app.use("/commit", commitRoutes)  
 
 //START SERVER***************************************************************** *//
 app.listen(process.env.PORT, ()=>{

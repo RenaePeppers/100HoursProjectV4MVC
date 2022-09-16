@@ -6,9 +6,7 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 //add specific routes for specific tasks
 router.get('/', homeController.getIndex)  //this will render the homepagenow go build the methods so our router has something to retrieve
-//router.post('/', homeController.createTask) //this will be for creating a new task on homepage. now go build the methods so our router has something to retrieve.
-//go into controllers/home.js and build out the methods that we can export and our router can call upon
-//these get sent to controllers/home.js
+
 router.post('/', homeController.createPlan) //this will be for creating a new plan on homepage. now go build the methods so our router has something to retrieve.
 //go into controllers/home.js and build out the methods that we can export and our router can call upon
 //these get sent to controllers/home.js
@@ -19,5 +17,6 @@ router.post('/login', authController.postLogin)
 router.get('/logout', authController.logout)
 router.get('/signup', authController.getSignup)
 router.post('/signup', authController.postSignup)
+router.get('/commit', authController.getCommit)
 
 module.exports = router

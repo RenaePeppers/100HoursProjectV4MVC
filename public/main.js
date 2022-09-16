@@ -3,7 +3,7 @@ document.getElementById('see-results').addEventListener('click', calcGoalWeight)
 function calcGoalWeight() {
     let startWeight=document.querySelector('#start-weight').value;
     let dailyDefGoal=document.querySelector('#deficit-goal').value;
-    let dbusername=document.querySelector('#user-name').value;
+    /* let dbusername=document.querySelector('#user-name').value; */
     goalWeight = startWeight - dailyDefGoal*35/3500;
     console.log(startWeight);
     console.log(goalWeight);

@@ -8,95 +8,57 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="utilities.css">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Commit</title>
 </head>
 <body>
        <!-- Navbar -->
        <div class="navbar">
         <div class="container flex">
             <h1 class="logo">5 Weeks, 3 Numbers</h1>
-<!--             <nav>
-                <ul>
-                    <li><a>Home</a></li>
-                    <li><a href="/daily">Daily Data Entry and Graph</a></li>
-                </ul>
-            </nav> -->
         </div>
-    </div>
-
+       </div>
 
     <section class="instructions-section">
-
-
-        <div class="mainBody container homepage">
-            <h1>Already have a 5-week plan?  Click here to log in!</h1>
-            <a class="button-format" href="/login"> Login</a>
-     
-      </div>
-
-    
-        <div class="card">
+       <div class="card">
             <h2>Guidelines</h2>
             <p>If you consistently consume fewer calories than you burn, your weight will decrease over time.</p>
             <p>Average Daily Calorie Deficit = (calories burned per day)  - (calories consumed per day) </p>
             <p>A 500 calorie/day average deficit results in a 1 lb/week weight loss.</p>
             <p>A 1000 calorie/day average deficit results in a 2 lb/week weight loss.</p>
         </div>
-
-
-    
     </section>
+
     <section class="instructions .card-grid">
         <div class="setup-form card">
             <h2>Initial Set-Up for Your 5 Week Plan</h2>
             <p>Today is day 0.  What do you weigh today?</p>
-            <form>
-<!--                 <div class="form-control showcase-form">
-                    <input id="user-name" type="text" name="dbusername" placeholder="Enter Your Name" required>
-                </div> -->
-
+            <form action="/commit/createCommit" method="POST">
                 <div class="form-control showcase-form">
-                    <input id="start-weight" type="text" name="starting-weight" placeholder="Enter Starting Weight" required>
+                    <input id="start-weight" type="text" name="startweight" placeholder="Enter Starting Weight" required>
                 </div>
             <p>What is your average daily calorie deficit goal for the next 5 weeks? </p>    
                 <div class="form-control showcase-form">
-                        <input id="deficit-goal" type="text" name="daily-deficit-goal" placeholder="Enter Daily Calorie Deficit" required>
+                    <input id="deficit-goal" type="text" name="goaldeficit" placeholder="Enter Daily Calorie Deficit" required>
                 </div>
-                <button id="see-results" class="btn" type="button" name="button">Click to see results</button>
+            <button id="see-results" class="btn" type="button" name="button">Click to see results</button>
+            <button type="submit" class="btn btn-primary" >Commit to this 5-week plan</button>
             </form>
         </div>    
 
-
-       <div class="card2">
+        <div class="card2">
             <h1>Your starting weight is <span id="startWeightOut">_______ </span> .</h1>
             <h1>If you average <span id="calDefOut">_______</span> calorie/day deficit,</h1>
             <h1> in 5 weeks you will weigh <span id="goal-weight-output">_______</span> pounds.</h1>
-
-            <a class="button-format" href="/signup"> Signup</a>
-
-            
-<!--             <form action="/" method="POST"> 
-                <input  id="user-name" type="text" name="dbusername2"  value = jimmy placeholder="Enter Your Name" required>
-                <button class="row4 button-effect btn" type="submit" id="updateDay0">Click to Commit to This Plan</button> 
-            </form>  -->
-        </div>
+            <a class="button-format" href="/daily"> Commit to this plan</a>
+       </div>
     </section>
  
-
-
     <section class="chart-and-table">
         <section>
         <div class="chart-container" style="position: relative">
         <!-- /* ; height: 80vh; width: 40vw"> */ -->
             <canvas id="goalChart"></canvas>
         </div>
-
-<!-- 
-        var chartTodayWeight=[];
-        for (let i=0; i<info.length; i++){
-        chartTodayWeight.push(info[i].dbtodaysweight)
-        }  ;
-        console.log(chartTodayWeight); -->
 
         <script>
             const labelArray=[]
@@ -141,11 +103,7 @@
             </script>
         </div>
         </section>
-        
-
-</section>  <!--end chart-and-table-->    
-
-
+    </section>  <!--end chart-->    
 
 
 <script type ="text/javascript" src="main.js" defer="defer"></script>    
