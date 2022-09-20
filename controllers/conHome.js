@@ -21,7 +21,7 @@ module.exports = {
                  }); 
             await writeNewPlanToDB.save();
              }    
-            res.redirect("/daily");  
+            res.redirect("/daily",{title:"Daily Page"});  
         } 
         catch (err) {
             if (err) return res.status(500).send(err);

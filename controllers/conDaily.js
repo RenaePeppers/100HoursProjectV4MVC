@@ -1,9 +1,13 @@
+const weightData = require('../models/WeightDataModel')
+
 module.exports = {   
-    getDaily : async (request, response) => {
+    getDaily : async (req, res) => {
+        console.log(req.user)
         try {
-          response.render('daily.ejs',{title:"Daily Data Entry"})   //if html, would use sendFile instead of render? title if for layout.ejs
-        } catch (error) {
-            response.status(500).send({message:error.message})
-        }
+            const weightDataItems = await weightData.find({user:req.user.id})
+            res.render('daily.ejs', {weightData: weightDataItems,  user: req.user})
+        }catch(err){
+            console.log(err)
+        } 
     }
 }

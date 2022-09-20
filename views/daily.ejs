@@ -11,8 +11,94 @@
     <title>Document</title>
 </head>
 <body>
+
 <h1> this is the daily page</h1>
+
 <a class="button-format" href="/logout">Logout</a>
+<div class="grid-list1">
+    <h2><%= user.userName %>, you have  item(s) remaining on your list:</h2>
+    </div>
+
+<section>
+    <ul>
+        <% for (let i=0; i<weightData.length; i++){%>
+            <li>
+                <span><%=weightData[i].dbtodaysdaynumber %></span>
+                <span><%=weightData[i].dbdailygoalweight.toFixed(1) %></span>
+            </li>
+       <% }  %>
+    </ul>
+</section> 
+
+<section>
+    <table class="table">
+        <caption>Days</caption>
+        <thead>
+        <tr>
+            <th>Day #</th>
+            <th>Yesterday's Calories In</th>
+            <th>Yesterday's Calories Out</th>
+            <th>This Morning's Weight (lbs)</th>
+            <th>Goal Weight (lbs)</th>
+        </tr>
+        </thead>
+        <tbody>
+            <%for (let i=0; i<weightData.length; i++){%>
+                <tr>
+                    <td><%=weightData[i].dbtodaysdaynumber%></td>
+                    <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
+                    <td>100</td>
+                    <td>200</td>
+                    <td>300</td>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+</section>
+       
+<section class="chart">
+    <div class="chart-container" style="position: relative">
+        <canvas id="dailyChart" width="400" height="400"></canvas>
+    </div>
+    <script>
+        const labelArray=[]
+        for (i=1; i<=35; i++){
+        labelArray[i]=i
+        }
+        const labels = labelArray;
+        const data = {
+              labels: labels,
+              datasets: [{
+                label: 'Goal Line:  Weight Over Time',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [],
+              },{
+              label:'current weight',
+              borderColor:"rgba(0,0,0,0)",
+              data:[],
+              pointRadius: 10,
+              }]
+            };
+              const config = {
+              type: 'line',
+              data: data,
+              options: {  plugins:{legend:{ display: false,
+                    labels: { color: 'rgb(255, 99, 132)' }
+                  } }  }
+              };
+         </script>
+
+        <script>
+            const dailyChart = new Chart(
+              document.getElementById('dailyChart'),
+              config
+            );
+        </script>
+    </section>
+
+
+
 </body>
 
 </html>

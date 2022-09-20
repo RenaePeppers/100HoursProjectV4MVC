@@ -26,6 +26,10 @@ dbgoalweight: {
     type: Number,
     required: false
 },
+dbdailygoalweight: {
+    type:Number,
+    required:false
+},
 dbtodaysdaynumber: {
     type: Number,
     required: false
