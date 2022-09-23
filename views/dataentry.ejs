@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<h1> this is the data entry page</h1>
+
+<a class="button-format" href="/logout">Logout</a>
+<div class="grid-list1">
+    <h2>Your user.userName is <%= user.userName %> , and your weightData.user is , and your user._id is , and your weightData._id  object id is:  and todays day is:<%=weightData.dbtodaysdaynumber %> </h2>
+    </div>
+
+<div>
+    <form action="/entry/dailyEntry/<%= weightData.id %>?_method=PUT"
+        method="POST">
+    <input type="text" class="form-control" id="day" name="day" placeholder="Today's Day Number">
+    <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight This Morning">
+    <input type="text" class="form-control" id="calin" name="calin" placeholder="Calories In (Yesterday)">
+    <input type="text" class="form-control" id="calout" name="calout" placeholder="Calories Out (Yesterday)" >
+    <button class="btn btn-primary fa fa-heart" type="submit">Submit</button>
+   </form>
+
+</div>
+
+
+</body>
+
+</html>

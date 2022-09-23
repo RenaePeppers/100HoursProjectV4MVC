@@ -30,8 +30,12 @@
     </ul>
 </section> 
 
+
+
+
 <div>
-<form  action="/daily/dailyentry/<%= user.id %>?_method=PUT"   method="POST" > 
+<form  action="/daily/dailyentry"   method="POST">
+<input type="hidden" name="_method" value="PUT">
     <input type="text" class="form-control" id="day" name="day" placeholder="Today's Day Number">
     <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight This Morning">
     <input type="text" class="form-control" id="calin" name="calin" placeholder="Calories In (Yesterday)">
@@ -60,7 +64,7 @@
         <tbody>
             <%for (let i=0; i<weightData.length; i++){%>
                 <tr>
-                    <td><%=weightData[i].dbtodaysdaynumber%></td>
+                    <td><a href="/entry/<%= weightData[i]._id %>"></a><%=weightData[i].dbtodaysdaynumber%></td>
                     <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
                     <td>100</td>
                     <td>200</td>

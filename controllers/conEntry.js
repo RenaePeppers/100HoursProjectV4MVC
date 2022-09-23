@@ -1,21 +1,25 @@
 const weightData = require('../models/WeightDataModel')
 
 module.exports = {   
-    getDaily : async (req, res) => {
+    getEntry : async (req, res) => {
         console.log(req.user)
+        console.log(req.params.id)
         try {
-            const weightDataItems = await weightData.find({user:req.user.id})
+            const weightDataItems = await weightData.findById(req.params.id);
             console.log(weightDataItems)
+            console.log("got to here")
 
-            res.render('daily.ejs', {weightData: weightDataItems, user: req.user})
+            res.render("dataentry.ejs", {weightData: weightDataItems, user: req.user})
+            console.log('okay')
             
         }catch(err){
             console.log(err)
         } 
     },
     dailyEntry: async (req, res) => {
+        console.log('running /entry/dailyEntry')
         try {
-          await Post.findOneAndUpdate({"user.id":user.id,"dbtodaysdaynumber":req.body.day},
+          await weightData.findOneAndUpdate({ _id: req.params.id },
             {  dbtodaysweight:req.body.weight,
                dbyesterdaycalin: req.body.calin,
                dbyesterdaycalout: req.body.calout,
