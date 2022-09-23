@@ -30,6 +30,21 @@
     </ul>
 </section> 
 
+<div>
+<form  action="/daily/dailyentry/<%= user.id %>?_method=PUT"   method="POST" > 
+    <input type="text" class="form-control" id="day" name="day" placeholder="Today's Day Number">
+    <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight This Morning">
+    <input type="text" class="form-control" id="calin" name="calin" placeholder="Calories In (Yesterday)">
+    <input type="text" class="form-control" id="calout" name="calout" placeholder="Calories Out (Yesterday)" >
+    <button class="btn btn-primary fa fa-heart" type="submit">Submit</button>
+   </form>
+
+</div>
+
+
+
+
+
 <section>
     <table class="table">
         <caption>Days</caption>
@@ -55,32 +70,52 @@
         </tbody>
     </table>
 </section>
-       
+
+
 <section class="chart">
     <div class="chart-container" style="position: relative">
         <canvas id="dailyChart" width="400" height="400"></canvas>
     </div>
+
     <script>
         const labelArray=[]
-        for (i=1; i<=35; i++){
+        for (i=0; i<=35; i++){
         labelArray[i]=i
         }
-        const labels = labelArray;
+
+        let datapoint=[]
+        for (let i=0; i<3; i++){
+         datapoint[i]=  `<%=weightData[2].dbdailygoalweight%>`;}
+
+var goalweightdata= JSON.parse(`<%- JSON.stringify(weightData) %>`);
+var labelsgoalweight = [];
+for(var i = 0; i < goalweightdata.length; i++){
+   labelsgoalweight.push(goalweightdata[i].dbdailygoalweight);
+}
+
+
+
+
+
         const data = {
-              labels: labels,
-              datasets: [{
-                label: 'Goal Line:  Weight Over Time',
+              labels: labelArray,
+              datasets: [
+                {
+                type:'line',
+                label: 'Weight Over Time',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [],
-              },{
-              label:'current weight',
-              borderColor:"rgba(0,0,0,0)",
-              data:[],
-              pointRadius: 10,
-              }]
+                data:labelsgoalweight,
+                 },
+                {
+                type: 'line',
+                label:'current weight',
+                borderColor:"rgba(0,0,0,0)",
+                data: [ `<%= weightData[0].dbdailygoalweight%>`, `<%= weightData[1].dbdailygoalweight%>`, `<%= weightData[2].dbdailygoalweight%>`],
+                pointRadius: 10,
+                }]
             };
-              const config = {
+        const config = {
               type: 'line',
               data: data,
               options: {  plugins:{legend:{ display: false,
@@ -95,6 +130,7 @@
               config
             );
         </script>
+
     </section>
 
 
