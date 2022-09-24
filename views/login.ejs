@@ -11,10 +11,7 @@
 <body>
 <div class="outside">   
 
-
-
- <!-- MainBody -->
- <div class="mainBody container">
+ <div class="login-card card">
 
     <% if (locals.messages.errors) { %>
         <% messages.errors.forEach( el => { %>
@@ -27,15 +24,17 @@
         <% }) %>    
     <% } %>
     <form  action="/login" method="POST">
+        <div class="showcase-form"></div>
         <input type="email" name="email" placeholder="Enter your email address">
         <br>
         <input type="password" name="password" placeholder="Enter your password">
         <br>
-        <input class="button-format" type="submit" value="Submit">
+        <input class="btn" type="submit" value="Submit">
+        </div>
     </form>
-</div>
+    
+  </div>
  
-
 </div>
 </body>
 </html>

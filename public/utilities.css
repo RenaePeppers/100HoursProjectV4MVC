@@ -1,6 +1,6 @@
 /* utility styling that will be used throughout website */
 .container {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
     overflow: auto;
     padding: 0 40px;
@@ -24,6 +24,7 @@
     border: none;
     border-radius: 5px;
     margin-top: 20px;
+    font-size: 2rem;
 }
 
 .btn-outline {
