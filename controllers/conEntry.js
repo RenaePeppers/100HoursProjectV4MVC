@@ -18,11 +18,14 @@ module.exports = {
     },
     dailyEntry: async (req, res) => {
         console.log('running /entry/dailyEntry')
+        
         try {
           await weightData.findOneAndUpdate({ _id: req.params.id },
             {  dbtodaysweight:req.body.weight,
                dbyesterdaycalin: req.body.calin,
                dbyesterdaycalout: req.body.calout,
+               dbyesterdaydeficit:req.body.calout - req.body.calin,
+               
             },
             
           );

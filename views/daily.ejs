@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="utilities.css">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
@@ -16,7 +14,7 @@
 
 <a class="button-format" href="/logout">Logout</a>
 <div class="grid-list1">
-    <h2><%= user.userName %>, you have  item(s) remaining on your list:</h2>
+    <h2><%= user.userName %>, Your goal for daily calorie deficit is:  <span><%=weightData[0].dbgoaldeficit %></span></h2>
     </div>
 
 <section>
@@ -30,46 +28,35 @@
     </ul>
 </section> 
 
-
-
-
-<div>
-<form  action="/daily/dailyentry"   method="POST">
-<input type="hidden" name="_method" value="PUT">
-    <input type="text" class="form-control" id="day" name="day" placeholder="Today's Day Number">
-    <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight This Morning">
-    <input type="text" class="form-control" id="calin" name="calin" placeholder="Calories In (Yesterday)">
-    <input type="text" class="form-control" id="calout" name="calout" placeholder="Calories Out (Yesterday)" >
-    <button class="btn btn-primary fa fa-heart" type="submit">Submit</button>
-   </form>
-
-</div>
-
-
-
-
-
 <section>
     <table class="table">
         <caption>Days</caption>
         <thead>
         <tr>
             <th>Day #</th>
-            <th>Yesterday's Calories In</th>
-            <th>Yesterday's Calories Out</th>
-            <th>This Morning's Weight (lbs)</th>
-            <th>Goal Weight (lbs)</th>
+            <th>Calories In</th>
+            <th>Calories Out</th>
+            <th>Weight</th>
+            <th>Goal Weight</th>
+            <th>Predicted Weight</th>
+            <th>Daily Calorie Deficit</th>
+            <th>Average Calorie Deficit</th>
         </tr>
         </thead>
         <tbody>
             <%for (let i=0; i<weightData.length; i++){%>
+                <% if(i<weightData.length-1){j=i+1} %>
                 <tr>
                     <td><a href="/entry/<%= weightData[i]._id %>"></a><%=weightData[i].dbtodaysdaynumber%></td>
+                    <td><%=weightData[j].dbyesterdaycalin%></td>
+                    <td><%=weightData[j].dbyesterdaycalout%></td>
+                    <td><%=weightData[i].dbtodaysweight%></td>
                     <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
-                    <td>100</td>
-                    <td>200</td>
-                    <td>300</td>
+                    <td><%=weightData[i].dbrunningpredictedweight%></td>
+                    <td><%=weightData[j].dbyesterdaydeficit%></td>
+                    <td><%=weightData[i].dbrunningavgdeficit%></td>
                 </tr>
+               
             <%}%>
         </tbody>
     </table>
@@ -88,19 +75,19 @@
         }
 
         let datapoint=[]
-        for (let i=0; i<3; i++){
+        for (let i=0; i<35; i++){
          datapoint[i]=  `<%=weightData[2].dbdailygoalweight%>`;}
 
 var goalweightdata= JSON.parse(`<%- JSON.stringify(weightData) %>`);
+
 var labelsgoalweight = [];
 for(var i = 0; i < goalweightdata.length; i++){
    labelsgoalweight.push(goalweightdata[i].dbdailygoalweight);
 }
-
-
-
-
-
+var labelscurrentweight = [];
+for(var i = 0; i < goalweightdata.length; i++){
+   labelscurrentweight.push(goalweightdata[i].dbtodaysweight);
+}
         const data = {
               labels: labelArray,
               datasets: [
@@ -115,7 +102,7 @@ for(var i = 0; i < goalweightdata.length; i++){
                 type: 'line',
                 label:'current weight',
                 borderColor:"rgba(0,0,0,0)",
-                data: [ `<%= weightData[0].dbdailygoalweight%>`, `<%= weightData[1].dbdailygoalweight%>`, `<%= weightData[2].dbdailygoalweight%>`],
+                data: labelscurrentweight,
                 pointRadius: 10,
                 }]
             };
@@ -138,7 +125,5 @@ for(var i = 0; i < goalweightdata.length; i++){
     </section>
 
 
-
 </body>
-
 </html>
