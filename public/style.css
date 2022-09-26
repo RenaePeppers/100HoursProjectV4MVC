@@ -48,34 +48,35 @@ code, pre {
     height: 0;
 }
 
+
+  /* table styling */
 th{ 
     color:black;
 }
 td{
     text-align: center;
+    align-items: center;
 }
 
 table, th, td {
     border: 1px solid;
     width: 900px;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    padding:0px !important; /*you can need !important*/
   }
-
   tr:nth-child(even) {
     background-color: #dddddd;
   }
-
-  td a {
-    display:block;
-    width:50px;
-    height: 50px;
-    background-color: #5cb85c;
+  td {
+    overflow: hidden;
 }
-th a {
-    display:block;
-    width:50px;
-    height: 50px;
-    background-color: #5cb85c;
+td > a {
+    display: block;
+    background-color:#B0E0E6;
+    height: 100%;
+    width: 100%;
+    padding: 10px 10px 500px 10px; /*table default padding except on bottom 500px for example*/
+    margin-bottom: -490px; /*same as bottom padding - table padding*/
 }
 
   /* navbar styling */
@@ -98,6 +99,15 @@ th a {
     align-items: center;
     padding-bottom: 20px;
 }
+.footer {
+    background-color:var(--primary-color);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    padding-top: 8px;
+    margin-top: 10px;
+    }
 
 .instructions {
     max-width: 1440px;
@@ -127,32 +137,36 @@ th a {
 
 
 .login-card{
-    max-width: 400px;
+    max-width: 500px;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .showcase-form input[type='text'] {
     border: 0;
     border: 1px solid #b4becb;
-    width:50%;
+    width:80%;
     padding: 10px;
     font-size: 16px;
+    margin-bottom: 5px;
 }
 .showcase-form input[type='email'] {
     border: 0;
     border: 1px solid #b4becb;
-    width:50%;
+    width:80%;
     padding: 10px;
     font-size: inherit;
     line-height: inherit;
+    margin-bottom: 5px;
 }
 .showcase-form input[type='password'] {
     border: 0;
     border: 1px solid #b4becb;
-    width:50%;
+    width:80%;
     padding: 10px;
     font-size: 16px;
+    margin-bottom: 5px;
 }
 
 

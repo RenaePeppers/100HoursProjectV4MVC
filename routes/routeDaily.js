@@ -1,6 +1,3 @@
-//this route renders the daily page
-
-
 const express = require('express')
 const router = express.Router() //require the router component of express
 const dailyController = require('../controllers/conDaily')

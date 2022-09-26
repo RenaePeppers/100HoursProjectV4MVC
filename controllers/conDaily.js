@@ -5,7 +5,7 @@ module.exports = {
         console.log(req.user)
         try {
             const weightDataItems = await weightData.find({user:req.user.id})
-            console.log(weightDataItems)
+            // console.log(weightDataItems)
 
             res.render('daily.ejs', {weightData: weightDataItems, user: req.user})
             
@@ -13,6 +13,8 @@ module.exports = {
             console.log(err)
         } 
     },
+
+    // I think this dailyEntry isn't used and needs deleted
     dailyEntry: async (req, res) => {
         try {
           await Post.findOneAndUpdate({"user.id":user.id,"dbtodaysdaynumber":req.body.day},

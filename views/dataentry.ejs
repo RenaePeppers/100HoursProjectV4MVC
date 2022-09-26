@@ -11,24 +11,23 @@
 
 <h1> this is the data entry page</h1>
 
-<a class="button-format" href="/logout">Logout</a>
+<a class="btn" href="/logout">Logout</a>
 <div class="grid-list1">
-    <h2>Your user.userName is <%= user.userName %> , and your weightData.user is , and your user._id is , and your weightData._id  object id is:  and todays day is:<%=weightData.dbtodaysdaynumber %> </h2>
-    </div>
+    <h2>Your user.userName is <%= user.userName %> , and your weightData.user is , and your user._id is , and your weightData._id  object id is:   or maybe its <%= weightData.id %> and todays day is:<%= weightData.dbtodaysdaynumber %> </h2>
+</div>
 
-<div>
+<div class="login-card card">
     <form action="/entry/dailyEntry/<%= weightData.id %>?_method=PUT"
         method="POST">
-    <input type="text" class="form-control" id="day" name="day" placeholder="Today's Day Number">
+        <div class="showcase-form">
     <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight This Morning">
     <input type="text" class="form-control" id="calin" name="calin" placeholder="Calories In (Yesterday)">
     <input type="text" class="form-control" id="calout" name="calout" placeholder="Calories Out (Yesterday)" >
-    <button class="btn btn-primary fa fa-heart" type="submit">Submit</button>
+    <button class="btn" type="submit">Submit</button>
+        </div>
    </form>
 
 </div>
 
-
 </body>
-
 </html>
