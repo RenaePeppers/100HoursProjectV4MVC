@@ -9,24 +9,28 @@
     <title>Document</title>
 </head>
 <body>
-
-<h1> this is the daily page</h1>
-
+<section class="container">
 <a class="btn" href="/logout">Logout</a>
-<div class="grid-list1">
-    <h2><%= user.userName %>, Your goal for daily calorie deficit is:  <span><%=weightData[0].dbgoaldeficit %></span></h2>
+<div class="daily-card-grid">
+    <div class="daily-card card dailycard1">
+    <h2><%= user.userName %>, this is your Table and Graph Summary Page.</h2>
+    <br>
+    <p><i class="fa fa-arrow-right" aria-hidden="true"></i> Your starting weight was:  <span><%=weightData[0].dbstartweight %></span> pounds.  </p>
+    <p><i class="fa fa-arrow-right" aria-hidden="true"></i> Your goal weight is: <span><%=weightData[0].dbstartweight-35*weightData[0].dbgoaldeficit/3500 %></span> pounds.</p>
+    <p><i class="fa fa-arrow-right" aria-hidden="true"></i> You should reach your goal if you average  <span><%=weightData[0].dbgoaldeficit %></span> per day calorie deficit for 35 days.</p>
     </div>
 
-<section>
-    <ul>
-        <% for (let i=0; i<weightData.length; i++){%>
-            <li>
-                <span><%=weightData[i].dbtodaysdaynumber %></span>
-                <span><%=weightData[i].dbdailygoalweight.toFixed(1) %></span>
-            </li>
-       <% }  %>
-    </ul>
-</section> 
+    <div class="daily-card card dailycard2">
+        <h2>Instructions</h2>
+        <br>
+        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> Starting on Day 1, click on the shaded Day# in the table. </p>
+        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> This will take you to a form where you will enter 3 Numbers:</p>
+        <p class="indent">1.  Your weight THIS MORNING.</p>
+        <p class="indent">2.  The calories you consumed YESTERDAY.</p>
+        <p class="indent">3.  The calories you burned YESTERDAY.</p>
+        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> These numbers will automatically enter into the table.  Be sure to enter your days in order.</p>
+        </div>   
+    </div>
 
 <section>
     <table class="table">
@@ -36,11 +40,11 @@
             <th>Day #</th>
             <th>Calories In</th>
             <th>Calories Out</th>
-            <th>Weight</th>
-            <th>Goal Weight</th>
-            <th>Predicted Weight</th>
-            <th>Daily Calorie Deficit</th>
-            <th>Average Calorie Deficit</th>
+            <th>Morning Weight</th>
+            <th>Daily Goal Weight</th>
+            <th>Predicted Weight (based on calorie deficit)</th>
+            <th>Today's Daily Calorie Deficit</th>
+            <th>Running Average Calorie Deficit</th>
         </tr>
         </thead>
         <tbody>
@@ -52,7 +56,7 @@
                     <td><%=weightData[j].dbyesterdaycalout%></td>
                     <td><%=weightData[i].dbtodaysweight%></td>
                     <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
-                    <td><%=weightData[i].dbrunningpredictedweight%></td>
+                    <td><%=weightData[i].dbrunningpredictedweight %></td>
                     <td><%=weightData[j].dbyesterdaydeficit%></td>
                     <td><%=weightData[j].dbrunningavgdeficit%></td>
                 </tr>
@@ -86,30 +90,40 @@ var labelscurrentweight = [];
 for(var i = 0; i < goalweightdata.length; i++){
    labelscurrentweight.push(goalweightdata[i].dbtodaysweight);
 }
+var labelspredictedweight = [];
+for(var i = 0; i < goalweightdata.length; i++){
+   labelspredictedweight.push(goalweightdata[i].dbrunningpredictedweight);
+}
+
         const data = {
               labels: labelArray,
               datasets: [
-                {
-                type:'line',
-                label: 'Weight Over Time',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                {type:'line',
+                label: 'Goal Weight',
+                backgroundColor: '#0033cc',
+                borderColor: '#0033cc',
                 data:labelsgoalweight,
                  },
-                {
-                type: 'line',
-                label:'current weight',
-                borderColor:"#FFFFFF",
-                backgroundColor:"#047aed",
+                {type: 'line',
+                label:'Actual Weight',
+                borderColor:"#ffffff",
+                backgroundColor:"#00000",
                 data: labelscurrentweight,
                 pointRadius: 10,
-                }]
+                },
+                {type: 'line',
+                label:'Predicted Weight',
+                borderColor:" #ff0000",
+                backgroundColor:"#ff0000",
+                data: labelspredictedweight,
+                }
+            ]
             };
         const config = {
               type: 'line',
               data: data,
-              options: {  plugins:{legend:{ display: false,
-                    labels: { color: 'rgb(255, 99, 132)' }
+              options: {  plugins:{legend:{ display: true,
+                    labels: { color: '#00000' }
                   } }  }
               };
          </script>
@@ -123,6 +137,6 @@ for(var i = 0; i < goalweightdata.length; i++){
 
     </section>
 
-
+</section>
 </body>
 </html>

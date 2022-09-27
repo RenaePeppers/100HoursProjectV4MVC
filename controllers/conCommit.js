@@ -13,7 +13,7 @@ module.exports = {
             dbdailygoalweight:req.body.startweight-(i)*req.body.goaldeficit/3500      
           });
         }
-      for(i=1; i<=4; i++){
+      for(i=1; i<=35; i++){
         await Commit.create({             //Commit model
             dbgoaldeficit: req.body.goaldeficit,  //from form name="goaldeficit"
             dbstartweight:req.body.startweight, 

@@ -9,14 +9,10 @@
 </head>
 <body>
 
-<h1> this is the data entry page</h1>
-
 <a class="btn" href="/logout">Logout</a>
-<div class="grid-list1">
-    <h2>Your user.userName is <%= user.userName %> , and your weightData.user is , and your user._id is , and your weightData._id  object id is:   or maybe its <%= weightData.id %> and todays day is:<%= weightData.dbtodaysdaynumber %> </h2>
-</div>
-
+   
 <div class="login-card card">
+    <h2><%= user.userName %>, please enter your 3 numbers for Day #<%= weightData.dbtodaysdaynumber %>. </h2>
     <form action="/entry/dailyEntry/<%= weightData.id %>?_method=PUT"
         method="POST">
         <div class="showcase-form">

@@ -36,6 +36,11 @@
     transform: scale(0.98);
 }
 
+
+.indent{
+    padding-left: 30px;
+}
+
 /* backgrounds and colored buttons*/
 .bg-primary, .btn-primary {
     background-color: var(--primary-color);

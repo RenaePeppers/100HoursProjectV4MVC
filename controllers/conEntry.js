@@ -25,6 +25,7 @@ module.exports = {
     dailyEntry: async (req, res) => {
         console.log('running /entry/dailyEntry')
         console.log('this is id for day'+ req.params.id)
+        
         try {
             await weightData.findOneAndUpdate({ _id: req.params.id },
             {  dbtodaysweight:req.body.weight,
@@ -47,18 +48,24 @@ module.exports = {
       console.log('running /entry/updateAvg')
       console.log(req.params.id +'this is the params')
       try {
-        const weightDataItemsAll = await weightData.find({user:req.user.id}) 
-        const weightDataItems = await weightData.find({ _id: req.params.id })
-        console.log('today:'+weightDataItems[0].dbtodaysdaynumber)
-        console.log('or:' + weightDataItemsAll[0].dbtodaysdaynumber)
-        if(weightDataItems[0].dbtodaysdaynumber ===1){
-          yestAvgDef=weightDataItemsAll[1].dbyesterdaydeficit
-        }else{
-          yestAvgDef=600
-        }
+        const weightDataItemsAll = await weightData.find({user:req.user.id}) //this is all weightData days for this user
+        const weightDataItems = await weightData.find({ _id: req.params.id }) //this is today's weightData for this user
+        
+        console.log('today:'+weightDataItems[0].dbtodaysdaynumber) //returns today
+        console.log('or:' + weightDataItemsAll[0].dbtodaysdaynumber)//returns day 0
 
+        if(weightDataItems[0].dbtodaysdaynumber ===1){
+          yestAvgDef=weightDataItemsAll[1].dbyesterdaydeficit //if today is day1, yesterdays avg is yesterday's deficit (day 0 : avg is only that day)
+        }else{
+          yestAvgDef=((weightDataItems[0].dbyesterdaydeficit) + weightDataItemsAll[weightDataItems[0].dbtodaysdaynumber-1].dbrunningavgdeficit*(weightDataItems[0].dbtodaysdaynumber-1))/weightDataItems[0].dbtodaysdaynumber
+        }
+        if(weightDataItems[0].dbtodaysdaynumber ===1){
+          todayPredicted=weightDataItems[0].dbstartweight - weightDataItems[0].dbyesterdaydeficit/3500  
+        }else{
+        todayPredicted=weightDataItemsAll[weightDataItems[0].dbtodaysdaynumber-1].dbrunningpredictedweight - weightDataItems[0].dbyesterdaydeficit/3500
+        }
         await weightData.findOneAndUpdate({ _id: req.params.id },
-         {  dbrunningavgdeficit: yestAvgDef,
+         {  dbrunningavgdeficit: yestAvgDef.toFixed(0), dbrunningpredictedweight: todayPredicted.toFixed(1)
          });
         console.log("daily data entry complete");
         res.redirect("/daily");  //takes them back to daily.ejs
