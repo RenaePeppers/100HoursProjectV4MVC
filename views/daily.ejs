@@ -9,8 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-<section class="container">
-<a class="btn" href="/logout">Logout</a>
+    <section class="mainBody">   
+<section class="container ">
+
 <div class="daily-card-grid">
     <div class="daily-card card dailycard1">
     <h2><%= user.userName %>, this is your Table and Graph Summary Page.</h2>
@@ -23,44 +24,65 @@
     <div class="daily-card card dailycard2">
         <h2>Instructions</h2>
         <br>
-        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> Starting on Day 1, click on the shaded Day# in the table. </p>
+        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> Starting on Day 1, click on the blue Day # cell in the table. </p>
         <p><i class="fa fa-arrow-right" aria-hidden="true"></i> This will take you to a form where you will enter 3 Numbers:</p>
         <p class="indent">1.  Your weight THIS MORNING.</p>
         <p class="indent">2.  The calories you consumed YESTERDAY.</p>
         <p class="indent">3.  The calories you burned YESTERDAY.</p>
-        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> These numbers will automatically enter into the table.  Be sure to enter your days in order.</p>
+        <p><i class="fa fa-arrow-right" aria-hidden="true"></i> These numbers will automatically enter into the table.  Continue entering data each day.  Be sure to enter your days in order.</p>
         </div>   
     </div>
 
 <section>
+    <div class="daily-card card table-card">
     <table class="table">
-        <caption>Days</caption>
+        <caption>Weight Data Table</caption>
         <thead>
         <tr>
             <th>Day #</th>
-            <th>Calories In</th>
-            <th>Calories Out</th>
             <th>Morning Weight</th>
             <th>Daily Goal Weight</th>
             <th>Predicted Weight (based on calorie deficit)</th>
-            <th>Today's Daily Calorie Deficit</th>
-            <th>Running Average Calorie Deficit</th>
+            <th>Calories In</th>
+            <th>Calories Out</th>
+            <th>Daily Calorie Deficit</th>
+            <th>Average Calorie Deficit</th>
         </tr>
         </thead>
         <tbody>
-            <%for (let i=0; i<weightData.length; i++){%>
+            <%for (let i=0; i<1; i++){%>
                 <% if(i<weightData.length-1){j=i+1} %>
                 <tr>
-                    <td><a href="/entry/<%= weightData[i]._id %>"></a><%=weightData[i].dbtodaysdaynumber%></td>
-                    <td><%=weightData[j].dbyesterdaycalin%></td>
-                    <td><%=weightData[j].dbyesterdaycalout%></td>
+                    <td><%=weightData[i].dbtodaysdaynumber%></td>
                     <td><%=weightData[i].dbtodaysweight%></td>
                     <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
                     <td><%=weightData[i].dbrunningpredictedweight %></td>
+                    <td><%=weightData[j].dbyesterdaycalin%></td>
+                    <td><%=weightData[j].dbyesterdaycalout%></td>
                     <td><%=weightData[j].dbyesterdaydeficit%></td>
                     <td><%=weightData[j].dbrunningavgdeficit%></td>
+                </tr>               
+            <%}%>
+            <%for (let i=1; i<weightData.length-1; i++){%>
+                <% if(i<weightData.length-1){j=i+1} %>
+                <tr>
+                    <td><a href="/entry/<%= weightData[i]._id %>"></a><%=weightData[i].dbtodaysdaynumber%></td>
+                    <td><%=weightData[i].dbtodaysweight%></td>
+                    <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
+                    <td><%=weightData[i].dbrunningpredictedweight %></td>
+                    <td><%=weightData[j].dbyesterdaycalin%></td>
+                    <td><%=weightData[j].dbyesterdaycalout%></td>
+                    <td><%=weightData[j].dbyesterdaydeficit%></td>
+                    <td><%=weightData[j].dbrunningavgdeficit%></td>
+                </tr>               
+            <%}%>
+            <%for (let i=35; i<36; i++){%>
+                <tr>
+                    <td><a href="/entry/<%= weightData[i]._id %>"></a><%=weightData[i].dbtodaysdaynumber%></td>
+                    <td><%=weightData[i].dbtodaysweight%></td>
+                    <td><%=weightData[i].dbdailygoalweight.toFixed(1)%></td>
+                    <td><%=weightData[i].dbrunningpredictedweight %></td>
                 </tr>
-               
             <%}%>
         </tbody>
     </table>
@@ -68,10 +90,11 @@
 
 
 <section class="chart">
+    <div class="daily-card card table-card">
     <div class="chart-container" style="position: relative">
         <canvas id="dailyChart" width="400" height="400"></canvas>
     </div>
-
+    </div>
     <script>
         const labelArray=[]
         for (i=0; i<=35; i++){
@@ -100,21 +123,21 @@ for(var i = 0; i < goalweightdata.length; i++){
               datasets: [
                 {type:'line',
                 label: 'Goal Weight',
-                backgroundColor: '#0033cc',
-                borderColor: '#0033cc',
+                backgroundColor: '#f6ab03',
+                borderColor: '#f6ab03',
                 data:labelsgoalweight,
                  },
                 {type: 'line',
                 label:'Actual Weight',
                 borderColor:"#ffffff",
-                backgroundColor:"#00000",
+                backgroundColor:"#586308",
                 data: labelscurrentweight,
                 pointRadius: 10,
                 },
                 {type: 'line',
                 label:'Predicted Weight',
-                borderColor:" #ff0000",
-                backgroundColor:"#ff0000",
+                borderColor:"#d82e49",
+                backgroundColor:"#d82e49",
                 data: labelspredictedweight,
                 }
             ]
@@ -138,5 +161,6 @@ for(var i = 0; i < goalweightdata.length; i++){
     </section>
 
 </section>
+<a class="btn" href="/logout">Logout</a>
 </body>
 </html>

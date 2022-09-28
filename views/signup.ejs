@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="outside">  
+    <section class="mainBody">    
 <div class="container">
 
     <% if (locals.messages.errors) { %>
@@ -17,7 +18,7 @@
     <% } %>
     
     <div class="login-card card">
-    <h2>Fill in the following fields to create an account...</h2>
+    <h2>Fill in the following fields to create an account.</h2>
     <form action="/signup" method="POST">
         <div class="showcase-form">
         <input type="text" name="userName" placeholder="User Name">
@@ -34,6 +35,7 @@
     </div>
 
 </div>
+    </section>
 </div>
 </body>
 </html>

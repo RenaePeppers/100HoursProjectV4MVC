@@ -10,6 +10,7 @@ module.exports = {
             dbstartweight:req.body.startweight, 
             user:req.user.id,
             dbtodaysdaynumber:i,  
+            dbrunningpredictedweight:req.body.startweight,
             dbdailygoalweight:req.body.startweight-(i)*req.body.goaldeficit/3500      
           });
         }

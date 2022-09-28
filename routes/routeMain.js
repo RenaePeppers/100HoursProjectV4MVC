@@ -18,5 +18,6 @@ router.get('/logout', authController.logout)
 router.get('/signup', authController.getSignup)
 router.post('/signup', authController.postSignup)
 router.get('/commit', authController.getCommit)
+router.get('/example', authController.getExample)
 
 module.exports = router

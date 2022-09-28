@@ -55,59 +55,7 @@
        </div>
     </section>
  
-    <section class="chart-and-table">
-        <section>
-        <div class="chart-container" style="position: relative">
-        <!-- /* ; height: 80vh; width: 40vw"> */ -->
-            <canvas id="goalChart"></canvas>
-        </div>
-
-        <script>
-            const labelArray=[]
-            for (i=0; i<=35; i++){
-            labelArray[i]=i
-            }
-            const labels = labelArray;
-            const data = {
-                  labels: labels,
-                  datasets: [{
-                    label: 'Goal Line:  Weight Over Time',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [],
-                  },{
-                  label:'current weight',
-                  borderColor:"rgba(0,0,0,0)",
-                  data:[],
-                  pointRadius: 10,
-                  }]
-                };
-                  const config = {
-                  type: 'line',
-                  data: data,
-                  options: {
-                     plugins: {
-                      legend: {
-                        display: false,
-                        labels: {
-                            color: 'rgb(255, 99, 132)'
-                        }
-                      }
-                     }
-                    }
-                  };
-             </script>
-            <script>
-                const goalChart = new Chart(
-                  document.getElementById('goalChart'),
-                  config
-                );
-            </script>
-        </div>
-        </section>
-    </section>  <!--end chart-->    
-
-</section>
+    
 <script type ="text/javascript" src="main.js" defer="defer"></script>    
 </body>
 

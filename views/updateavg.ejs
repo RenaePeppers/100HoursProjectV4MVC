@@ -8,16 +8,17 @@
     <title>Document</title>
 </head>
 <body>
+    <section class="mainBody">  
 
-<a class="btn" href="/logout">Logout</a>
 
 <div class="login-card card">
     <form action="/entry/updateAvg/<%= weightData[0].id %>?_method=PUT"
         method="POST">
-        <h1>Your numbers have been entered!  Click here to see your progress. <i class="fa fa-arrow-right" aria-hidden="true"> </i>
+        <h1>Your numbers have been entered.  Click here to see your progress. <i class="fa fa-arrow-right" aria-hidden="true"> </i>
         <button class="btn" type="submit">Woohoo!</button> </h1>
     </form>
 </div>
-
+    </section>
+<a class="btn" href="/logout">Logout</a>
 </body>
 </html>

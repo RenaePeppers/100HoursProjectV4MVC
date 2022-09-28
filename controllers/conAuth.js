@@ -66,6 +66,13 @@ const WeightDataModel = require('../models/WeightDataModel')
       title: 'Create Account'
     })
   }
+  exports.getExample = (req, res) => {
+    if (req.user) {
+      return res.redirect('/daily')
+    }
+    res.render('example.ejs')
+
+  }
   
   exports.postSignup = (req, res, next) => {
     const validationErrors = []
