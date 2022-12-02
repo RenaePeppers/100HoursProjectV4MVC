@@ -3,7 +3,7 @@
 An application that allows you to track weight loss based on calorie deficit.
 
 Link: [The 5 Week CICO App]
-Link: (https://spoiled-puppy-database.herokuapp.com](https://spadeswoodworking.netlify.app/)/)
+Link: 
 (https://five-week-challenge-v4.herokuapp.com)
 ## Packages/Dependencies
 
